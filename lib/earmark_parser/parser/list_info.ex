@@ -5,6 +5,7 @@ defmodule EarmarkParser.Parser.ListInfo do
 
   @not_pending {nil, 0}
 
+
   defstruct(
     indent: 0,
     pending: @not_pending,

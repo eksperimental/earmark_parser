@@ -186,7 +186,6 @@ defmodule EarmarkParser.Parser do
   # in the second we combine adjacent items into lists. This is pass one
 
   defp _parse( [ %Line.ListItem{}|_ ]=input, result, options, recursive) do
-
     {with_prepended_lists, rest, options1} = parse_list(input, result, options)
     _parse([%Line.Blank{lnb: 0} | rest], with_prepended_lists, options1, recursive)
 

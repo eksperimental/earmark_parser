@@ -76,6 +76,7 @@ defmodule EarmarkParser.Parser.ListParser do
       parse_list_items(:spaced, rest, list_items, _update_ctxt(ctxt, indented, item, true))
   end
   defp _parse_list_items_spaced_np([%Line.ListItem{}=line|rest], items, ctxt) do
+    IO.inspect line
     indented = _behead_spaces(line.line, ctxt.list_info.width)
     parse_list_items(:spaced, rest, items, _update_ctxt(ctxt, indented, line))
   end

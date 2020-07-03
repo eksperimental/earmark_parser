@@ -81,10 +81,25 @@ defmodule Acceptance.Ast.Lists.ListIndentTest do
       # ast = [
       # {"ul", [], [{"li", [], [{"p", [], ["List item1"], %{}}, {"p", [], ["Text1"], %{}}, {"ul", [], [{"li", [], ["List item2\nText\n", {"a", [{"href", "https://mydomain.org/user_or_team/repo_name/blob/master/%{path}#L%{line}"}], ["https://mydomain.org/user_or_team/repo_name/blob/master/%{path}#L%{line}"], %{}}], %{}}], %{}}], %{}}], %{}}
       ]
-
       messages = []
 
       assert as_ast(markdown) == {:ok, ast, messages}
+    end
+    test "reducing #9" do
+      markdown = """
+      * List item1
+
+        Text1
+
+          * List item2
+
+        Text2
+      """
+      ast = [ul(li([p("List item1"), p("Text1"), ul(li("List item2")), p("Text2")]))]
+      messages = []
+      as_ast(markdown)
+
+      # assert as_ast(markdown) == {:ok, ast, messages}
     end
   end
 end
